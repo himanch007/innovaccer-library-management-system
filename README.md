@@ -1,7 +1,9 @@
 ## Library Management system.
+
 ## Tech stack:
+
 - Flask
 - Postgres
-- HTMl
+- HTML
 - CSS
 - JavaScript

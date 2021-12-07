@@ -3,3 +3,18 @@
 * {
   box-sizing: border-box;
 }
+
+body {
+  color: blue;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 1rem 2rem;
+}
