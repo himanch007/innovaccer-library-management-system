@@ -7,3 +7,7 @@
 - HTML
 - CSS
 - JavaScript
+
+## Features:
+- User login
+- Admin login
