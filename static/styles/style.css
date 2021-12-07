@@ -66,3 +66,14 @@ body {
   color: var(--primary-button-color);
   background: var(--primary-text-color);
 }
+
+/* login form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 5rem;
+}
