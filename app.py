@@ -12,30 +12,31 @@ def indexPage():
 def userLogin():
     return render_template('login.html')
 
-#successfull login
-@app.route('/success')
+#successful login
+@app.route('/success-login')
 def success():
     return render_template('success.html')
 
-
 #creating register page
-@app.route('/register/')
+@app.route('/register')
 def registerPage():
     return render_template('register.html')
 
-@app.route('/registersuccess', methods=["POST"])
+#successful register
+@app.route('/success-register', methods=["POST"])
 def registerSuccess():
-    if request.method == "POST":
-        # data = request.form.to_dict()
-        # name = data['name']
-        name = request.form.get('name')
-        email = request.form.get('email')
-        password = request.form.get('password')
-        entry = User(name=name,email=email,password=password)
-        db.session.add(entry)
-        db.session.commit()
-    #return render_template('success.html', form_data=data)
+    # if request.method == "POST":
+    #     name = request.form.get('name')
+    #     email = request.form.get('email')
+    #     password = request.form.get('password')
+    #     entry = User(name=name,email=email,password=password)
+    #     db.session.add(entry)
+    #     db.session.commit()
+    # #return render_template('success.html', form_data=data)
     return render_template('login.html')
+
+
+
 
 @app.route('/loginsuccess', methods=['POST'])
 def loginSucess():
