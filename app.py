@@ -35,7 +35,6 @@ def success():
 #creating register page
 @app.route('/register/')
 def registerPage():
-
     return render_template('register.html')
 
 #successful register
@@ -46,10 +45,6 @@ def registerSuccess():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
-        # db_string = "postgresql://postgres:root@127.0.0.1:5432/library"
-        # db = create_engine(db_string)
-        # if("db.session.query(User).filter(count(id))" == 0):
-        #     result = db.execute("db.session.query(User).filter(max(id))") + 1
         entry = Users(name=name,email=email,password=password)
         db.session.add(entry)
         db.session.commit()
