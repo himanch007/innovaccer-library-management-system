@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+  --primary-bg-color: #000;
+  --primary-header-color: #4f46e5;
+  --primary-text-color: #f9fafb;
+  --primary-button-color: #2563eb;
+  --secondary-invert-color: #fbcfe8;
+  --start-color: #7928ca;
+  --end-color: #ff0080;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: blue;
+  font-family: 'Poppins', sans-serif;
+  background: var(--primary-bg-color);
+  color: var(--primary-text-color);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+}
+
+.main-header {
+  font-size: 4rem;
+}
+
+.invert {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--start-color),
+    var(--end-color)
+  );
+}
+
+.btn {
+  padding: 0.8rem 2rem;
+  border: none;
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+.container {
+  text-align: center;
+}
+
+.login-btn {
+  color: var(--primary-text-color);
+  background: var(--primary-button-color);
+  font-weight: bold;
+  border-radius: 2rem;
+}
+
+.login-btn:hover,
+.login-btn:focus {
+  color: var(--primary-button-color);
+  background: var(--primary-text-color);
+}
+
+/* login form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 5rem;
+}
