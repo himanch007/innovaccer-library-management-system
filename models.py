@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@localhost/library"
 db = SQLAlchemy(app)
 
 
-class User(db.Model):
+class Users(db.Model):
     id = db.Column(db.Integer, primary_key = True, unique = True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
