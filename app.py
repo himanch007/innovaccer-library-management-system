@@ -3,8 +3,6 @@ from flask.templating import render_template
 from models import *
 from sqlalchemy import create_engine
 
-u_id = 1
-b_id = 1
 
 #Create an index page
 @app.route('/')
@@ -48,7 +46,6 @@ def registerSuccess():
         entry = Users(name=name,email=email,password=password)
         db.session.add(entry)
         db.session.commit()
-        #u_id += 1
     return render_template('login.html')
 
 
