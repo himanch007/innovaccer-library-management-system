@@ -1,25 +1,21 @@
-import re
 from flask import Flask, app, request
 from flask.templating import render_template
 from models import *
-
-
-#First Flask code to display Hello World
-@app.route('/test')
-def hello_world():
-    return "Hello World"
-
 
 #Create an index page
 @app.route('/')
 def indexPage():
     return render_template('index.html')
 
-
 #creating login page
-@app.route('/login/')
-def loginPage():
+@app.route('/user-login')
+def userLogin():
     return render_template('login.html')
+
+
+@app.route('/success')
+def success():
+    return render_template('success.html')
 
 
 #creating register page
