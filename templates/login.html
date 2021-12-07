@@ -2,7 +2,7 @@
 <html lang="en">
   {%include "header.html"%}
   <body>
-    <form action="/success" class="login-form">
+    <form action="/success" class="login-form" method="POST">
       <input
         type="text"
         name="username"
@@ -15,6 +15,8 @@
         placeholder="password"
         class="login-input"
       />
+
+      <button type="submit" class="submit-btn">Submit</button>
     </form>
   </body>
 </html>

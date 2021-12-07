@@ -1,4 +1,3 @@
-import re
 from flask import Flask, app, request
 from flask.templating import render_template
 from models import *
@@ -12,6 +11,11 @@ def indexPage():
 @app.route('/user-login')
 def userLogin():
     return render_template('login.html')
+
+
+@app.route('/success')
+def success():
+    return render_template('success.html')
 
 
 #creating register page
