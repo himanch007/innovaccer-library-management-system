@@ -6,7 +6,6 @@
   --primary-text-color: #f9fafb;
   --primary-button-color: #2563eb;
   --secondary-bg-color: #f9fafb;
-  --secondary-invert-color: #fbcfe8;
   --start-color: #7928ca;
   --end-color: #ff0080;
   --input-padding: 1rem;
@@ -65,6 +64,7 @@ body {
   margin-bottom: var(--input-margin);
 }
 
+/* form */
 .login-form,
 .register-form {
   display: flex;
@@ -88,7 +88,6 @@ body {
   background: var(--primary-text-color);
 }
 
-/* login form */
 .login-form,
 .register-form {
   display: flex;
@@ -125,4 +124,13 @@ body {
 
 .message a:hover {
   text-decoration: underline;
+}
+
+/* list */
+.list-items {
+  list-style: none;
+}
+
+.list-item {
+  color: var(--primary-text-color);
 }
