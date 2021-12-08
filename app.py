@@ -47,7 +47,7 @@ def loginSucess():
             for row in result:
                 if (len(row.name)!=0):
                     print("Welcome ",row.name)
-                    return render_template('admin-dashboard.html', data=row.name)
+                    return render_template('admin_dashboard.html', data=row.name)
         result = db.session.query(Users).filter(Users.name==name, Users.password==password)
         for row in result:
             if (len(row.name)!=0):
