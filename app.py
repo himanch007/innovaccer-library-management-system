@@ -20,6 +20,19 @@ def userLogin():
 def booklist():
     return render_template('booklist.html', data=book_list)
 
+
+#create userpanel page
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html', data=book_list)
+
+#create about page
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+
 @app.route('/success')
 def success():
     return render_template('success.html')
