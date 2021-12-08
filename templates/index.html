@@ -3,14 +3,16 @@
   {%include "header.html"%}
   <body>
     <div class="main-container">
-      <h1>Library Management</h1>
+      <h1 class="main-header">
+        Library <span class="invert">Management</span>
+      </h1>
       <div class="container">
         <form action="/user-login" method="GET">
-          <button class="btn" type="submit">User login</button>
+          <button class="btn login-btn" type="submit">User login</button>
         </form>
 
         <form action="/admin-login" method="GET">
-          <button class="btn" type="submit">Admin login</button>
+          <button class="btn login-btn" type="submit">Admin login</button>
         </form>
       </div>
     </div>
