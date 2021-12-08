@@ -15,31 +15,8 @@ def indexPage():
 def userLogin():
     return render_template('login.html')
 
-<<<<<<< HEAD
-
-#create booklist page
-@app.route('/booklist')
-def booklist():
-    return render_template('booklist.html', data=book_list)
-
-
-#create userpanel page
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html', data=book_list)
-
-#create about page
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-
-
-@app.route('/success')
-=======
 #successful login
 @app.route('/success-login')
->>>>>>> 1d5a894831c8ca3a0c1fc01998d7d6b455cf2328
 def success():
     return render_template('success.html')
 
