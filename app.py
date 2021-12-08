@@ -2,6 +2,8 @@ from flask import Flask, app, request
 from flask.templating import render_template
 from models import *
 
+
+book_list = ['spiderman', 'spiderman', 'harry poter']
 #Create an index page
 @app.route('/')
 def indexPage():
@@ -12,6 +14,11 @@ def indexPage():
 def userLogin():
     return render_template('login.html')
 
+
+#create booklist page
+@app.route('/booklist')
+def booklist():
+    return render_template('booklist.html', data=book_list)
 
 @app.route('/success')
 def success():
