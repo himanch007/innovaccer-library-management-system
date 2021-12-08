@@ -2,21 +2,22 @@
 <html lang="en">
   {%include "header.html"%}
   <body>
-    <form action="/success-login" class="login-form" method="POST">
+    <form action="/success" class="login-form" method="POST">
       <input
-        type="text"
-        name="name"
-        placeholder="Username"
-        class="login-input"
+        type="email"
+        name="email"
+        placeholder="email"
+        class="user-input"
+        required
       />
       <input
         type="password"
         name="password"
         placeholder="password"
-        class="login-input"
+        class="user-input"
+        required
       />
-
-      <button type="submit" class="submit-btn">Submit</button>
+      <button type="submit" class="submit-btn btn">Login</button>
     </form>
     <p class="message">
       If not register then please do. <a href="/register">Register</a>

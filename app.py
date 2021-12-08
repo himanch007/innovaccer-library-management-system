@@ -2,6 +2,8 @@ from flask import Flask, app, request
 from flask.templating import render_template
 from models import *
 
+
+book_list = ['spiderman', 'spiderman', 'harry poter']
 #Create an index page
 @app.route('/')
 def indexPage():
@@ -56,6 +58,16 @@ def loginSucess():
     data = "Wrong Password"
     return render_template('login.html', data = data)
 
+@app.route('/AdminLoginSuccess', methods=['POST'])
+def adminLoginSuccess():
+    if request.method == "POST":
+        title = request.form.get('title')
+        category = request.form.get('category')
+        author = request.form.get('author')
+        entry = Books(title=title,category=category,author=author)
+        db.session.add(entry)
+        db.session.commit()
+    return render_template('admin_dashboard.html')
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)

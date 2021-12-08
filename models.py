@@ -16,9 +16,9 @@ class Users(db.Model):
 
 class Books(db.Model):
     id = db.Column(db.Integer, primary_key = True, unique = True)
-    name = db.Column(db.String(100), unique=False, nullable=False)
-    category = db.Column(db.String(100), nullable=False)
-    author = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(100), unique=False, nullable=False)
+    category = db.Column(db.String(100), unique=False, nullable=False)
+    author = db.Column(db.String(100), unique=False, nullable=False)
 
 class admin_table(db.Model):
     id = db.Column(db.Integer, primary_key = True, unique = True)
