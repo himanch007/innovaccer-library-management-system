@@ -35,18 +35,17 @@ def registerSuccess():
     return render_template('login.html')
 
 
-@app.route('/loginsuccess', methods=['POST'])
+@app.route('/success-login', methods=['POST'])
 def loginSucess():
     if request.method == 'POST':
-        email = request.form.get('email')
+        name = request.form.get('name')
         password = request.form.get('password')
         #result = db.session.query(User).all()
-        result = db.session.query(User).filter(User.email==email, User.password==password)
+        result = db.session.query(Users).filter(Users.name==name, Users.password==password)
         for row in result:
-            if (len(row.email)!=0):
+            if (len(row.name)!=0):
                 print("Welcome ",row.name)
                 return render_template('dashboard.html', data=row.name)
-            # print("Name: ",row.name, "Email: ",row.email, "Password: ", row.password)
     data = "Wrong Password"
     return render_template('login.html', data = data)
 
