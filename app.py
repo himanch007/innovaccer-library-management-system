@@ -1,6 +1,7 @@
 from flask import Flask, app, request
 from flask.templating import render_template
 from models import *
+import hashlib
 
 
 #Create an index page
@@ -31,7 +32,10 @@ def registerSuccess():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
-        entry = Users(name=name,email=email,password=password)
+        #hashing the password before storing
+        hashedPassword = hashlib.md5(bytes(str(password),encoding='utf-8'))
+        hashedPassword = hashedPassword.hexdigest()
+        entry = Users(name=name,email=email,password=hashedPassword)
         db.session.add(entry)
         db.session.commit()
     return render_template('login.html')
@@ -42,14 +46,16 @@ def loginSucess():
     if request.method == 'POST':
         name = request.form.get('name')
         password = request.form.get('password')
-        #result = db.session.query(User).all()
+        #hashing the input and comparing the hash
+        hashedPassword = hashlib.md5(bytes(str(password),encoding='utf-8'))
+        hashedPassword = hashedPassword.hexdigest()
         if(name == "admin"):
-            result = db.session.query(admin_table).filter(admin_table.name==name, admin_table.password==password)
+            result = db.session.query(admin_table).filter(admin_table.name==name, admin_table.password==hashedPassword)
             for row in result:
                 if (len(row.name)!=0):
                     print("Welcome ",row.name)
                     return render_template('admin_dashboard.html', data=row.name)
-        result = db.session.query(Users).filter(Users.name==name, Users.password==password)
+        result = db.session.query(Users).filter(Users.name==name, Users.password==hashedPassword)
         for row in result:
             if (len(row.name)!=0):
                 print("Welcome ",row.name)
