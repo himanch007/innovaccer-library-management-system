@@ -3,7 +3,6 @@ from flask.templating import render_template
 from models import *
 
 
-book_list = ['spiderman', 'spiderman', 'harry poter']
 #Create an index page
 @app.route('/')
 def indexPage():
@@ -68,6 +67,10 @@ def adminLoginSuccess():
         db.session.add(entry)
         db.session.commit()
     return render_template('admin_dashboard.html')
+
+@app.route('/AdminLogout')
+def adminLogout():
+    return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
