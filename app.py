@@ -2,8 +2,6 @@ from flask import Flask, app, request
 from flask.templating import render_template
 from models import *
 
-
-book_list = ['spiderman', 'spiderman', 'harry poter']
 #Create an index page
 @app.route('/')
 def indexPage():
@@ -15,10 +13,10 @@ def indexPage():
 def userLogin():
     return render_template('login.html')
 
-#successful login
-@app.route('/success-login')
-def success():
-    return render_template('success.html')
+# #successful login
+# @app.route('/success-login')
+# def success():
+#     return render_template('success.html')
 
 #creating register page
 @app.route('/register/')
@@ -49,7 +47,7 @@ def loginSucess():
             for row in result:
                 if (len(row.name)!=0):
                     print("Welcome ",row.name)
-                    return render_template('admin_dashboard.html', data=row.name)
+                    return render_template('admin-dashboard.html', data=row.name)
         result = db.session.query(Users).filter(Users.name==name, Users.password==password)
         for row in result:
             if (len(row.name)!=0):
@@ -57,6 +55,13 @@ def loginSucess():
                 return render_template('dashboard.html', data=row.name)
     data = "Wrong Password"
     return render_template('login.html', data = data)
+
+
+#booklist for user
+@app.route('/booklist')
+def booklist():
+    book_list = ['spiderman', 'spiderman', 'harry poter']
+    return render_template('booklist.html', data=book_list)
 
 
 if __name__ == "__main__":
