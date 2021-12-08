@@ -10,7 +10,7 @@
   --start-color: #7928ca;
   --end-color: #ff0080;
   --input-padding: 1rem;
-  --input-margin: 0.5rem;
+  --input-margin: 1rem;
 }
 
 * {
@@ -49,8 +49,9 @@ body {
 .btn {
   padding: 0.8rem 2rem;
   border: none;
-  margin: 1rem;
   font-size: 1rem;
+  border-radius: 0.2rem;
+  width: 100%;
 }
 
 .container {
@@ -61,10 +62,11 @@ body {
   color: var(--primary-text-color);
   background: var(--primary-button-color);
   font-weight: bold;
-  border-radius: 2rem;
+  margin-bottom: var(--input-margin);
 }
 
-.login-form {
+.login-form,
+.register-form {
   display: flex;
   flex-direction: column;
   width: 50vw;
@@ -75,17 +77,13 @@ body {
 }
 
 .login-btn,
-.login-btn,
-.submit-btn,
 .submit-btn {
   color: var(--primary-text-color);
   background: var(--primary-button-color);
 }
 
 .login-btn:hover,
-.login-btn:focus,
-.submit-btn:hover,
-.submit-btn:focus {
+.submit-btn:hover {
   color: var(--primary-button-color);
   background: var(--primary-text-color);
 }
@@ -107,8 +105,8 @@ body {
   border: none;
   border-radius: 0.2rem;
   outline: none;
-  /* background-color: var(--secondary-bg-color);
-  color: var(--primary-bg-color); */
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-bg-color);
   font-weight: 400;
 }
 
@@ -122,7 +120,6 @@ body {
 
 .message a {
   text-decoration: none;
-
   color: var(--primary-button-color);
 }
 

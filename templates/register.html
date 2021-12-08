@@ -3,13 +3,32 @@
   {%include "header.html"%}
   <body>
     <form action="/success-register" class="register-form" method="POST">
-      <input type="text" name="name" placeholder="name" />
+      <input
+        type="text"
+        class="user-input"
+        name="name"
+        placeholder="name"
+        required
+      />
 
-      <input type="email" name="email" placeholder="email" />
+      <input
+        type="email"
+        class="user-input"
+        name="email"
+        placeholder="email"
+        required
+      />
 
-      <input type="password" name="password" placeholder="password" />
+      <input
+        type="password"
+        class="user-input"
+        name="password"
+        placeholder="password"
+        required
+      />
 
-      <button type="submit" class="submit-btn">Submit</button>
+      <button type="submit" class="submit-btn btn">Register</button>
     </form>
+    <p class="message">Already a user? <a href="/user-login">Login</a></p>
   </body>
 </html>
