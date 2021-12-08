@@ -18,24 +18,21 @@ def success():
     return render_template('success.html')
 
 #creating register page
-@app.route('/register')
+@app.route('/register/')
 def registerPage():
     return render_template('register.html')
 
 #successful register
 @app.route('/success-register', methods=["POST"])
 def registerSuccess():
-    # if request.method == "POST":
-    #     name = request.form.get('name')
-    #     email = request.form.get('email')
-    #     password = request.form.get('password')
-    #     entry = User(name=name,email=email,password=password)
-    #     db.session.add(entry)
-    #     db.session.commit()
-    # #return render_template('success.html', form_data=data)
+    if request.method == "POST":
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        entry = Users(name=name,email=email,password=password)
+        db.session.add(entry)
+        db.session.commit()
     return render_template('login.html')
-
-
 
 
 @app.route('/loginsuccess', methods=['POST'])
