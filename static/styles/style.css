@@ -5,18 +5,21 @@
   --primary-header-color: #4f46e5;
   --primary-text-color: #f9fafb;
   --primary-button-color: #2563eb;
+  --secondary-bg-color: #f9fafb;
   --secondary-invert-color: #fbcfe8;
   --start-color: #7928ca;
   --end-color: #ff0080;
+  --input-padding: 1rem;
+  --input-margin: 1rem;
 }
 
 * {
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   color: blue;
-  font-family: 'Poppins', sans-serif;
   background: var(--primary-bg-color);
   color: var(--primary-text-color);
 }
@@ -46,8 +49,9 @@ body {
 .btn {
   padding: 0.8rem 2rem;
   border: none;
-  margin: 1rem;
   font-size: 1rem;
+  border-radius: 0.2rem;
+  width: 100%;
 }
 
 .container {
@@ -58,17 +62,11 @@ body {
   color: var(--primary-text-color);
   background: var(--primary-button-color);
   font-weight: bold;
-  border-radius: 2rem;
+  margin-bottom: var(--input-margin);
 }
 
-.login-btn:hover,
-.login-btn:focus {
-  color: var(--primary-button-color);
-  background: var(--primary-text-color);
-}
-
-/* login form */
-.login-form {
+.login-form,
+.register-form {
   display: flex;
   flex-direction: column;
   width: 50vw;
@@ -76,4 +74,55 @@ body {
   align-items: center;
   margin: auto;
   margin-top: 5rem;
+}
+
+.login-btn,
+.submit-btn {
+  color: var(--primary-text-color);
+  background: var(--primary-button-color);
+}
+
+.login-btn:hover,
+.submit-btn:hover {
+  color: var(--primary-button-color);
+  background: var(--primary-text-color);
+}
+
+/* login form */
+.login-form,
+.register-form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  margin: auto;
+  margin-top: 5rem;
+}
+
+.user-input {
+  padding: var(--input-padding);
+  margin-bottom: var(--input-margin);
+  width: 100%;
+  border: none;
+  border-radius: 0.2rem;
+  outline: none;
+  background-color: var(--secondary-bg-color);
+  color: var(--primary-bg-color);
+  font-weight: 400;
+}
+
+.user-input:focus {
+  outline: 1px solid var(--primary-button-color);
+}
+
+.message {
+  text-align: center;
+}
+
+.message a {
+  text-decoration: none;
+  color: var(--primary-button-color);
+}
+
+.message a:hover {
+  text-decoration: underline;
 }
