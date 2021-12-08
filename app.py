@@ -8,6 +8,7 @@ def indexPage():
     return render_template('index.html')
 
 #creating login page
+@app.route('/admin-login')
 @app.route('/user-login')
 def userLogin():
     return render_template('login.html')
@@ -41,6 +42,12 @@ def loginSucess():
         name = request.form.get('name')
         password = request.form.get('password')
         #result = db.session.query(User).all()
+        if(name == "admin"):
+            result = db.session.query(admin_table).filter(admin_table.name==name, admin_table.password==password)
+            for row in result:
+                if (len(row.name)!=0):
+                    print("Welcome ",row.name)
+                    return render_template('admin_dashboard.html', data=row.name)
         result = db.session.query(Users).filter(Users.name==name, Users.password==password)
         for row in result:
             if (len(row.name)!=0):
