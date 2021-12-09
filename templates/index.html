@@ -3,17 +3,19 @@
   {%include "header.html"%}
   <body>
     <div class="main-container">
-      <h1 class="main-header">
-        Library <span class="invert">Management</span>
-      </h1>
-      <div class="container">
-        <form action="/user-login" method="GET">
-          <button class="btn login-btn" type="submit">Login</button>
-        </form>
-        <p class="message">
+      <div class="left-container">
+        <h1 class="main-header">
+          Library <span class="invert">Management</span>
+        </h1>
+        <a class="btn login-btn login-btn-link" href="/user-login" type="submit"
+          >Login</a
+        >
+        <p class="message-register">
           If not register then please do. <a href="/register">Register</a>
         </p>
       </div>
+
+      <img class="right-img" src="/static/images/index.svg" alt="hero-image" />
     </div>
   </body>
 </html>

@@ -92,6 +92,7 @@ def admin_dashboard():
 def daily_post(id):
     #do your code here
     # print("here:", id)
+
     return render_template('issued.html')
 
 @app.route('/issued-books')
