@@ -93,18 +93,20 @@ def dashboard(book_id,user_id):
     result = db.session.query(Users).filter(Users.id==user_id)
     for row in result:
         ids = list(row.book_ids.split(" "))
-        ids.remove(book_id)
-        user_book_update = ' '.join(ids)
-        Users.query.filter_by(id=user_id).update(dict(book_ids=user_book_update))
-        db.session.commit()
+        if(book_id in ids):
+            ids.remove(book_id)
+            user_book_update = ' '.join(ids)
+            Users.query.filter_by(id=user_id).update(dict(book_ids=user_book_update))
+            db.session.commit()
 
-        book = Books.query.filter_by(id=book_id).first()
-        numberofbooks = book.numberofbooks
-        print("hereeeeee",numberofbooks)
-        Books.query.filter_by(id=book_id).update(dict(numberofbooks=str(int(numberofbooks)+1)))
-        db.session.commit()
+            book = Books.query.filter_by(id=book_id).first()
+            numberofbooks = book.numberofbooks
+            print("hereeeeee",numberofbooks)
+            Books.query.filter_by(id=book_id).update(dict(numberofbooks=str(int(numberofbooks)+1)))
+            db.session.commit()
+        books = db.session.query(Books).all()
 
-    return render_template('dashboard.html')
+    return render_template('dashboard.html',user_id=user_id,books=books)
 
 @app.route('/book-form-id/<book_id>/<user_id>/<numberofbooks>', methods=['GET'])
 def daily_post(book_id,user_id,numberofbooks):
