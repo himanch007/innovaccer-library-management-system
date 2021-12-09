@@ -63,7 +63,7 @@ def loginSucess():
     data = "Wrong Password"
     return render_template('login.html', data = data)
 
-@app.route('/AdminLoginSuccess', methods=['POST'])
+@app.route('/adminLoginSuccess', methods=['POST'])
 def adminLoginSuccess():
     if request.method == "POST":
         title = request.form.get('title')
@@ -74,9 +74,21 @@ def adminLoginSuccess():
         db.session.commit()
     return render_template('admin_dashboard.html')
 
-@app.route('/AdminLogout')
+@app.route('/adminLogout')
 def adminLogout():
     return render_template('index.html')
+
+
+# dummy routes 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+
+
+@app.route('/admin_dashboard')
+def admin_dashboard():
+    return render_template('admin_dashboard.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)

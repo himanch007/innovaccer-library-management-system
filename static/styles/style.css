@@ -5,6 +5,7 @@
   --primary-header-color: #4f46e5;
   --primary-text-color: #f9fafb;
   --primary-button-color: #2563eb;
+  --primary-header-color: #444;
   --secondary-bg-color: #f9fafb;
   --start-color: #7928ca;
   --end-color: #ff0080;
@@ -15,6 +16,8 @@
 * {
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -126,6 +129,31 @@ body {
   text-decoration: underline;
 }
 
+/* navigation */
+.navigation {
+  background-color: var(--primary-header-color);
+  color: white;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navigation .nav-brand {
+  font-weight: bold;
+}
+
+.navigation .nav-links {
+  text-align: right;
+}
+
+.navigation .link {
+  color: white;
+}
+
+.navigation .link-active {
+  font-weight: bold;
+}
+
 /* list */
 .list-items {
   list-style: none;
@@ -133,4 +161,36 @@ body {
 
 .list-item {
   color: var(--primary-text-color);
+}
+
+.link {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.link-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.link-secondary {
+  color: var(--primary-color);
+  border-radius: 0.5rem;
+  border: 1px solid var(--primary-color);
+}
+
+/* lists */
+.list-non-bullet {
+  list-style: none;
+}
+
+.list-item-inline {
+  display: inline;
+  padding: 0rem 0.5rem;
+}
+
+.list-item-inline :hover {
+  cursor: pointer;
+  border-bottom: 2px solid var(--primary-bg-color);
 }
