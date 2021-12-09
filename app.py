@@ -88,5 +88,37 @@ def admin_dashboard():
     return render_template('admin_dashboard.html')
 
 
+@app.route('/book-form-id/<id>', methods=['GET'])
+def daily_post(id):
+    #do your code here
+    # print("here:", id)
+    return render_template('issued.html')
+
+@app.route('/issued-books')
+def issuedBooks():
+    books = [
+        {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
+        {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
+        {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
+        {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
+        {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
+
+    ]
+    return render_template('issued.html', books=books)
+
+# dummy routes 
+@app.route('/dashboard')
+def dashboard():
+    books = [
+        {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
+        {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
+        {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
+        {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
+        {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
+
+    ]
+    return render_template('dashboard.html', books=books)
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
