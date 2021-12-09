@@ -25,6 +25,10 @@ def success():
 def registerPage():
     return render_template('register.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 #successful register
 @app.route('/success-register', methods=["POST"])
 def registerSuccess():
@@ -59,7 +63,8 @@ def loginSucess():
         for row in result:
             if (len(row.name)!=0):
                 print("Welcome ",row.name)
-                return render_template('dashboard.html', data=row.name)
+                books = db.session.query(Books).all()
+                return render_template('dashboard.html', data=row.name,books=books)
     data = "Wrong Password"
     return render_template('login.html', data = data)
 
@@ -77,21 +82,6 @@ def adminLoginSuccess():
 @app.route('/logout')
 def logout():
     return render_template('index.html')
-
-
-# dummy routes 
-@app.route('/dashboard')
-def dashboard():
-    books = [
-        {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
-        {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
-        {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
-        {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
-        {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
-
-    ]
-    return render_template('dashboard.html', books=books)
-
 
 @app.route('/admin_dashboard')
 def admin_dashboard():
