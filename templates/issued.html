@@ -19,7 +19,7 @@
     </ul>
   </nav>
   <div class="book-list">
-    <h3>Available books</h3>
+    <h3>Your books</h3>
     <table>
       <thead>
         <tr>
@@ -27,22 +27,24 @@
           <th>Category</th>
           <th>Name</th>
           <th>Author</th>
-          <th>Available</th>
-          <th>Issue</th>
+          <th>Issued</th>
         </tr>
       </thead>
       <tbody>
         {% for book in books %}
+        {% for user_book in user_books %}
+        {% if book.id == user_book %}
         <tr>
           <td>{{book.id}}</td>
           <td>{{book.title}}</td>
           <td>{{book.category}}</td>
           <td>{{book.author}}</td>
-          <td>{{book.numberofbooks}}</td>
           <td><form action="/dashboard" method="GET">
             <button type="submit">Return</button>
           </form></td>
         </tr>
+        {%endif%}
+        {%endfor%}
         {%endfor%}
       </tbody>
     </table>

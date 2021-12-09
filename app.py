@@ -39,7 +39,7 @@ def registerSuccess():
         #hashing the password before storing
         hashedPassword = hashlib.md5(bytes(str(password),encoding='utf-8'))
         hashedPassword = hashedPassword.hexdigest()
-        entry = Users(name=name,email=email,password=hashedPassword)
+        entry = Users(name=name,email=email,password=hashedPassword,book_ids="")
         db.session.add(entry)
         db.session.commit()
     return render_template('login.html')
@@ -62,9 +62,9 @@ def loginSucess():
         result = db.session.query(Users).filter(Users.name==name, Users.password==hashedPassword)
         for row in result:
             if (len(row.name)!=0):
-                print("Welcome ",row.name)
+                print("Welcome ",row.id)
                 books = db.session.query(Books).all()
-                return render_template('dashboard.html', data=row.name,books=books)
+                return render_template('dashboard.html', user_id=row.id,books=books)
     data = "Wrong Password"
     return render_template('login.html', data = data)
 
@@ -74,7 +74,8 @@ def adminLoginSuccess():
         title = request.form.get('title')
         category = request.form.get('category')
         author = request.form.get('author')
-        entry = Books(title=title,category=category,author=author)
+        numberofbooks = request.form.get('numberOfBooks')
+        entry = Books(title=title,category=category,author=author,numberofbooks=numberofbooks)
         db.session.add(entry)
         db.session.commit()
     return render_template('admin_dashboard.html')
@@ -88,36 +89,62 @@ def admin_dashboard():
     return render_template('admin_dashboard.html')
 
 
-@app.route('/book-form-id/<id>', methods=['GET'])
-def daily_post(id):
+@app.route('/book-form-id/<book_id>/<user_id>/<numberofbooks>', methods=['GET'])
+def daily_post(book_id,user_id,numberofbooks):
     #do your code here
-    # print("here:", id)
-    return render_template('issued.html')
+    # print("id:",book_id)
+    # print("here:", numberofbooks)
+    if(int(numberofbooks)>0):
+        result = db.session.query(Users).filter(Users.id==user_id)
+        for row in result:
+            ids = list(row.book_ids.split(" "))
+            if(book_id not in ids):
+                ids.append(book_id)
+                Books.query.filter_by(id=book_id).update(dict(numberofbooks=str(int(numberofbooks)-1)))
+                db.session.commit()
+            user_book_update = ' '.join(ids)
+            Users.query.filter_by(id=user_id).update(dict(book_ids=user_book_update))
+            db.session.commit()
+            # print('hereeeeeee',user_book_update)
+    missing = Users.query.filter_by(id=user_id).first()
+    user_books = list(missing.book_ids.split(" "))
+    books = db.session.query(Books).all()
+    for i in range(1,len(user_books)):
+        user_books[i] = int(user_books[i])
+    print(user_books)
+    # User.query.filter(User.email.endswith('@example.com')).all()
+    return render_template('issued.html',user_books=user_books,books=books)
 
 @app.route('/issued-books')
-def issuedBooks():
-    books = [
-        {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
-        {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
-        {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
-        {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
-        {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
+def issued():
 
-    ]
-    return render_template('issued.html', books=books)
+    # User.query.filter(User.email.endswith('@example.com')).all()
+    return render_template('issued.html')
 
-# dummy routes 
-@app.route('/dashboard')
-def dashboard():
-    books = [
-        {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
-        {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
-        {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
-        {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
-        {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
+# @app.route('/issued-books')
+# def issuedBooks():
+#     books = [
+#         {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
+#         {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
+#         {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
+#         {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
+#         {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
 
-    ]
-    return render_template('dashboard.html', books=books)
+#     ]
+#     return render_template('issued.html', books=books)
+
+# # dummy routes 
+# @app.route('/dashboard')
+# def dashboard():
+#     books = [
+#         {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
+#         {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
+#         {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
+#         {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
+#         {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
+
+#     ]
+#     return render_template('dashboard.html', books=books)
 
 
 if __name__ == "__main__":

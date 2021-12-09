@@ -13,6 +13,7 @@ class Users(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(250), unique = False, nullable=False)
+    book_ids = db.Column(db.String(200))
 
 class Books(db.Model):
     id = db.Column(db.Integer, primary_key = True, unique = True)

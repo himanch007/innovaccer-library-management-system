@@ -28,7 +28,7 @@
           <th>Name</th>
           <th>Author</th>
           <th>Available</th>
-          <th>Issued</th>
+          <th>Issue</th>
         </tr>
       </thead>
       <tbody>
@@ -39,7 +39,7 @@
           <td>{{book.category}}</td>
           <td>{{book.author}}</td>
           <td>{{book.numberofbooks}}</td>
-          <td><form action="/book-form-id/{{book.id}}" method="GET">
+          <td><form action="/book-form-id/{{book.id}}/{{user_id}}/{{book.numberofbooks}}" method="GET">
             <button type="submit">Issue</button>
           </form></td>
         </tr>
