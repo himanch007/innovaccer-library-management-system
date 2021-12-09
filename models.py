@@ -19,6 +19,7 @@ class Books(db.Model):
     title = db.Column(db.String(100), unique=False, nullable=False)
     category = db.Column(db.String(100), unique=False, nullable=False)
     author = db.Column(db.String(100), unique=False, nullable=False)
+    numberofbooks = db.Column(db.Integer)
 
 class admin_table(db.Model):
     id = db.Column(db.Integer, primary_key = True, unique = True)

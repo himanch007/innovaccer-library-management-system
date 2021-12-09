@@ -25,6 +25,10 @@ def success():
 def registerPage():
     return render_template('register.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 #successful register
 @app.route('/success-register', methods=["POST"])
 def registerSuccess():
@@ -56,10 +60,11 @@ def loginSucess():
                     print("Welcome ",row.name)
                     return render_template('admin_dashboard.html', data=row.name)
         result = db.session.query(Users).filter(Users.name==name, Users.password==hashedPassword)
+        books = db.session.query(Books).all()
         for row in result:
             if (len(row.name)!=0):
                 print("Welcome ",row.name)
-                return render_template('dashboard.html', data=row.name)
+                return render_template('dashboard.html', data=row.name,books=books)
     data = "Wrong Password"
     return render_template('login.html', data = data)
 
@@ -69,7 +74,8 @@ def adminLoginSuccess():
         title = request.form.get('title')
         category = request.form.get('category')
         author = request.form.get('author')
-        entry = Books(title=title,category=category,author=author)
+        numberOfBooks = request.form.get('numberOfBooks')
+        entry = Books(title=title,category=category,author=author,numberofbooks=numberOfBooks)
         db.session.add(entry)
         db.session.commit()
     return render_template('admin_dashboard.html')
