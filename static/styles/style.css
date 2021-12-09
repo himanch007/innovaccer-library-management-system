@@ -28,18 +28,38 @@ body {
 
 .main-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  margin: 4rem 9rem;
+  justify-content: space-between;
   align-items: center;
-  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.login-btn-link {
+  text-decoration: none;
+  margin: 4rem 0rem;
+  width: 100%;
+}
+
+.message-register {
+  margin-top: 1rem;
+}
+
+.left-container {
+  margin: 1rem;
+  max-width: 400px;
+}
+
+.right-img {
+  width: 80vh;
+  height: 70vh;
+  margin: 1rem;
 }
 
 .main-header {
   font-size: 4rem;
-}
-
-.container {
-  margin-top: 3rem;
+  line-height: 1;
+  margin-bottom: 2rem;
 }
 
 .invert {
@@ -60,17 +80,6 @@ body {
   width: 100%;
 }
 
-.container {
-  text-align: center;
-}
-
-.login-btn {
-  color: var(--primary-text-color);
-  background: var(--primary-button-color);
-  font-weight: bold;
-  margin-bottom: var(--input-margin);
-}
-
 /* form */
 .login-form,
 .register-form,
@@ -84,6 +93,11 @@ body {
   margin-top: 3rem;
 }
 
+.login-form,
+.register-form {
+  margin-top: 5rem;
+}
+
 .login-btn,
 .submit-btn {
   color: var(--primary-text-color);
@@ -94,15 +108,6 @@ body {
 .submit-btn:hover {
   color: var(--primary-button-color);
   background: var(--primary-text-color);
-}
-
-.login-form,
-.register-form {
-  display: flex;
-  flex-direction: column;
-  width: 50vw;
-  margin: auto;
-  margin-top: 5rem;
 }
 
 .user-input {
@@ -126,13 +131,20 @@ body {
   margin-top: 0.5rem;
 }
 
-.message a {
+.message a,
+.message-register a {
   text-decoration: none;
   color: var(--primary-button-color);
 }
 
-.message a:hover {
+.message a:hover,
+.message-register a:hover {
   text-decoration: underline;
+}
+
+.message a:active,
+.message-register a:active {
+  color: var(--secondary-header-color);
 }
 
 /* navigation */
