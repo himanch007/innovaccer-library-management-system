@@ -73,14 +73,15 @@ body {
 
 /* form */
 .login-form,
-.register-form {
+.register-form,
+.admin-books-form {
   display: flex;
   flex-direction: column;
   width: 50vw;
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .login-btn,
@@ -122,6 +123,7 @@ body {
 
 .message {
   text-align: center;
+  margin-top: 0.5rem;
 }
 
 .message a {
@@ -197,4 +199,15 @@ body {
 .list-item-inline :hover {
   cursor: pointer;
   border-bottom: 2px solid var(--primary-bg-color);
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: var(--primary-text-color);
+  font-size: 1rem;
+}
+
+.logout-btn:hover {
+  cursor: pointer;
 }
