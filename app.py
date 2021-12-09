@@ -25,10 +25,6 @@ def success():
 def registerPage():
     return render_template('register.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
 #successful register
 @app.route('/success-register', methods=["POST"])
 def registerSuccess():
@@ -60,11 +56,10 @@ def loginSucess():
                     print("Welcome ",row.name)
                     return render_template('admin_dashboard.html', data=row.name)
         result = db.session.query(Users).filter(Users.name==name, Users.password==hashedPassword)
-        books = db.session.query(Books).all()
         for row in result:
             if (len(row.name)!=0):
                 print("Welcome ",row.name)
-                return render_template('dashboard.html', data=row.name,books=books)
+                return render_template('dashboard.html', data=row.name)
     data = "Wrong Password"
     return render_template('login.html', data = data)
 
@@ -74,8 +69,7 @@ def adminLoginSuccess():
         title = request.form.get('title')
         category = request.form.get('category')
         author = request.form.get('author')
-        numberOfBooks = request.form.get('numberOfBooks')
-        entry = Books(title=title,category=category,author=author,numberofbooks=numberOfBooks)
+        entry = Books(title=title,category=category,author=author)
         db.session.add(entry)
         db.session.commit()
     return render_template('admin_dashboard.html')
@@ -88,7 +82,15 @@ def logout():
 # dummy routes 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    books = [
+        {'id': 1, 'name':'AAA', 'author': 'Author of AAA', 'category': 'category of AAA'},
+        {'id': 2, 'name':'BBB', 'author': 'Author of BBB', 'category': 'category of BBB'},
+        {'id': 3, 'name':'CCC', 'author': 'Author of CCC', 'category': 'category of CCC'},
+        {'id': 4, 'name':'DDD', 'author': 'Author of DDD', 'category': 'category of DDD'},
+        {'id': 5, 'name':'EEE', 'author': 'Author of EEE', 'category': 'category of EEE'},
+
+    ]
+    return render_template('dashboard.html', books=books)
 
 
 @app.route('/admin_dashboard')
