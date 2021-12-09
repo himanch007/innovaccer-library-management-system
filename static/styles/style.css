@@ -38,6 +38,10 @@ body {
   font-size: 4rem;
 }
 
+.container {
+  margin-top: 3rem;
+}
+
 .invert {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

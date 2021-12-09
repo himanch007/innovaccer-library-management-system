@@ -74,8 +74,8 @@ def adminLoginSuccess():
         db.session.commit()
     return render_template('admin_dashboard.html')
 
-@app.route('/adminLogout')
-def adminLogout():
+@app.route('/logout')
+def logout():
     return render_template('index.html')
 
 

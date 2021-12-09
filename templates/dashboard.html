@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  {%include "header.html"%}
-  </head>
-  <body>
-    <nav class="navigation container">
-      <div class="nav-brand">Library Management</div>
-      <ul class="list-non-bullet nav-links">
-        <li class="list-item-inline">
-          <a class="link link-active" href="/issued-books">Issued Books</a>
-        </li>
-        <li class="list-item-inline">
-          <a class="link" href="/about">About</a>
-        </li>
-        <li class="list-item-inline">
-          <a class="link" href="/logout">Logout</a>
-        </li>
-      </ul>
-    </nav>
-  </body>
+{%include "header.html"%}
+</head>
+
+<body>
+  <nav class="navigation">
+    <div class="nav-brand">Library Management</div>
+    <ul class="list-non-bullet nav-links">
+      <li class="list-item-inline">
+        <a class="link link-active" href="/issued-books">Issued Books</a>
+      </li>
+      <li class="list-item-inline">
+        <a class="link" href="/about">About</a>
+      </li>
+      <li class="list-item-inline">
+        <a class="link" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="book-list">
+    <h3>Available books</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Author</th>
+          <th>Available</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+        <tr>
+          <td>{book.id}</td>
+          <td>{book.category}</td>
+          <td>{book.name}</td>
+          <td>{book.author}</td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</body>
+
 </html>
