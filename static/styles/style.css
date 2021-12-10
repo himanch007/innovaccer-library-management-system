@@ -300,8 +300,8 @@ tr {
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(
     90deg,
-    var(--start-about-color),
-    var(--end-about-color)
+    var(--primary-button-color),
+    var(--end-color)
   );
 }
 
