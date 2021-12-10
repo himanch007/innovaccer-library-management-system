@@ -39,9 +39,7 @@
           <td>{{book.title}}</td>
           <td>{{book.category}}</td>
           <td>{{book.author}}</td>
-          <td><form action="/dashboard/{{book.id}}/{{user_id}}" method="GET">
-            <button type="submit">Return</button>
-          </form></td>
+          <td><a href="/dashboard/{{book.id}}/{{user_id}}" method="GET">Return</a></td>
         </tr>
         {%endif%}
         {%endfor%}
