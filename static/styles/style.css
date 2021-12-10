@@ -6,6 +6,7 @@
   --primary-text-color: #f9fafb;
   --primary-button-color: #2563eb;
   --secondary-header-color: #444;
+  --secondary-text-color: #94a3b8;
   --secondary-bg-color: #f9fafb;
   --start-color: #7928ca;
   --end-color: #ff0080;
@@ -307,4 +308,36 @@ tr {
 
 .reverse {
   flex-wrap: wrap-reverse;
+}
+
+/* error-404 */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-wrap: wrap-reverse;
+}
+
+.error-msg-left,
+.error-msg-right {
+  margin: 1rem;
+}
+
+.error-msg-right {
+  width: 50vw;
+  height: 50vh;
+}
+
+.error-link {
+  text-decoration: none;
+  color: var(--primary-button-color);
+}
+
+.error-link:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: var(--secondary-text-color);
 }

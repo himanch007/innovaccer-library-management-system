@@ -88,25 +88,26 @@ def logout():
 def admin_dashboard():
     return render_template('admin_dashboard.html')
 
-# @app.route('/dashboard/<book_id>/<user_id>')
-# def dashboard(book_id,user_id):
-#     result = db.session.query(Users).filter(Users.id==user_id)
-#     for row in result:
-#         ids = list(row.book_ids.split(" "))
-#         if(book_id in ids):
-#             ids.remove(book_id)
-#             user_book_update = ' '.join(ids)
-#             Users.query.filter_by(id=user_id).update(dict(book_ids=user_book_update))
-#             db.session.commit()
 
-#             book = Books.query.filter_by(id=book_id).first()
-#             numberofbooks = book.numberofbooks
-#             print("hereeeeee",numberofbooks)
-#             Books.query.filter_by(id=book_id).update(dict(numberofbooks=str(int(numberofbooks)+1)))
-#             db.session.commit()
-#         books = db.session.query(Books).all()
+@app.route('/dashboard/<book_id>/<user_id>')
+def dashboard(book_id,user_id):
+    result = db.session.query(Users).filter(Users.id==user_id)
+    for row in result:
+        ids = list(row.book_ids.split(" "))
+        if(book_id in ids):
+            ids.remove(book_id)
+            user_book_update = ' '.join(ids)
+            Users.query.filter_by(id=user_id).update(dict(book_ids=user_book_update))
+            db.session.commit()
 
-#     return render_template('dashboard.html',user_id=user_id,books=books)
+            book = Books.query.filter_by(id=book_id).first()
+            numberofbooks = book.numberofbooks
+            print("hereeeeee",numberofbooks)
+            Books.query.filter_by(id=book_id).update(dict(numberofbooks=str(int(numberofbooks)+1)))
+            db.session.commit()
+        books = db.session.query(Books).all()
+
+    return render_template('dashboard.html',user_id=user_id,books=books)
 
 @app.route('/book-form-id/<book_id>/<user_id>/<numberofbooks>', methods=['GET'])
 def daily_post(book_id,user_id,numberofbooks):
@@ -140,6 +141,10 @@ def issued():
     # User.query.filter(User.email.endswith('@example.com')).all()
     return render_template('issued.html')
 
+@app.errorhandler(404)
+def error(e):
+    return render_template('404.html')
+
 # @app.route('/issued-books')
 # def issuedBooks():
 #     books = [
@@ -164,6 +169,7 @@ def issued():
 
 #     ]
 #     return render_template('dashboard.html', books=books)
+
 
 
 if __name__ == "__main__":
