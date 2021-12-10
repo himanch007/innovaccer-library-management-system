@@ -2,7 +2,19 @@ from flask import Flask, app, request
 from flask.templating import render_template
 from models import *
 import hashlib
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
+# from werkzeug.security import generate_password_hash, check_password_hash
 
+
+app = Flask(__name__) 
+app.secret_key = 'secretkeyhardcoded'
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+#User auth
+@login_manager.user_loader
+def load_user(id):
+    return Users.query.get(int(id))
 
 #Create an index page
 @app.route('/')
@@ -46,6 +58,7 @@ def registerSuccess():
 
 
 @app.route('/success-login', methods=['POST'])
+@login_required
 def loginSucess():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -85,6 +98,7 @@ def logout():
     return render_template('index.html')
 
 @app.route('/admin_dashboard')
+@login_required
 def admin_dashboard():
     return render_template('admin_dashboard.html')
 
@@ -136,7 +150,7 @@ def daily_post(book_id,user_id,numberofbooks):
 
 @app.route('/issued-books')
 def issued():
-
+    
     # User.query.filter(User.email.endswith('@example.com')).all()
     return render_template('issued.html')
 
