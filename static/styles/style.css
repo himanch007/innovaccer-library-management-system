@@ -9,6 +9,8 @@
   --secondary-bg-color: #f9fafb;
   --start-color: #7928ca;
   --end-color: #ff0080;
+  --start-about-color: #007cf0;
+  --end-about-color: #00dfd8;
   --input-padding: 1rem;
   --input-margin: 1rem;
 }
@@ -30,11 +32,15 @@ body {
   text-align: center;
 }
 
+.left {
+  text-align: left;
+}
+
 .main-container {
   display: flex;
   flex-direction: row;
-  margin: 4rem 9rem;
-  justify-content: space-between;
+  margin: 3rem 2rem;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -50,14 +56,18 @@ body {
 }
 
 .left-container {
-  margin: 1rem;
+  margin: 1rem 1rem 2rem 1rem;
   max-width: 400px;
 }
 
-.right-img {
+.right-container {
+  margin: 1rem 1rem 3rem 1rem;
+}
+
+.right-container img,
+.left-container img {
   width: 80vh;
   height: 70vh;
-  margin: 1rem;
 }
 
 .main-header {
@@ -90,7 +100,7 @@ body {
 .admin-books-form {
   display: flex;
   flex-direction: column;
-  width: 40vw;
+  width: 50vw;
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -214,7 +224,7 @@ body {
 
 .list-item-inline :hover {
   cursor: pointer;
-  border-bottom: 2px solid var(--secondary-header-color);
+  border-bottom: 4px solid var(--primary-text-color);
 }
 
 .logout-btn {
@@ -256,11 +266,45 @@ th {
   padding: 1rem 1.2rem;
 }
 
-tbody {
-  color: #444;
-}
-
 td {
   color: var(--primary-text-color);
   padding: 0.5rem 1.2rem;
+}
+
+tr {
+  padding: 1rem;
+}
+
+.issue-link {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-header-color);
+  color: var(--primary-text-color);
+  font-weight: bold;
+  border-radius: 0.2rem;
+}
+
+.issue-link:hover {
+  color: var(--secondary-header-color);
+  background: var(--primary-text-color);
+}
+
+/* about */
+.title {
+  margin: 2rem 2rem 1rem 0rem;
+}
+
+.about-header {
+  font-size: 4rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--start-about-color),
+    var(--end-about-color)
+  );
+}
+
+.reverse {
+  flex-wrap: wrap-reverse;
 }
