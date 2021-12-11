@@ -6,10 +6,11 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 # from werkzeug.security import generate_password_hash, check_password_hash
 
 
-app = Flask(__name__) 
+# app = Flask(__name__) 
 app.secret_key = 'secretkeyhardcoded'
 login_manager = LoginManager()
 login_manager.init_app(app)
+db = SQLAlchemy(app)
 
 #User auth
 @login_manager.user_loader
@@ -58,7 +59,6 @@ def registerSuccess():
 
 
 @app.route('/success-login', methods=['POST'])
-@login_required
 def loginSucess():
     if request.method == 'POST':
         name = request.form.get('name')
@@ -73,7 +73,9 @@ def loginSucess():
                     print("Welcome ",row.name)
                     return render_template('admin_dashboard.html', data=row.name)
         result = db.session.query(Users).filter(Users.name==name, Users.password==hashedPassword)
+        
         for row in result:
+            login_user(name=row.name,password=row.password)
             if (len(row.name)!=0):
                 print("Welcome ",row.id)
                 books = db.session.query(Books).all()
