@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%include "header.html"%}
+    </head>
+    <body>
+        <nav class="navigation">
+            <div class="nav-brand">Library Management</div>
+            <ul class="list-non-bullet nav-links">
+              <li class="list-item-inline">
+                <a class="link link-active" href="/issued-books/{{user_id}}">Issued Books</a>
+              </li>
+              <li class="list-item-inline">
+                <a class="link" href="/about">About</a>
+              </li>
+              <li class="list-item-inline">
+                <a class="link" href="/logout">Logout</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="book-list">
+            <h3>Available books</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Category</th>
+                  <th>Name</th>
+                  <th>Author</th>
+                  <th>Available</th>
+                  <th>Remove Book</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for book in books %}
+                <tr>
+                  <td>{{book.id}}</td>
+                  <td>{{book.title}}</td>
+                  <td>{{book.category}}</td>
+                  <td>{{book.author}}</td>
+                  <td>{{book.numberofbooks}}</td>
+                  <td><a class="issue-link" href="/remove-book/{{book.id}}">
+                      Remove Book
+                    </a></td>
+                </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+          </div>
+    </body>
+</html>

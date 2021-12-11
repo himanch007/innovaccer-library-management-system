@@ -7,15 +7,19 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 
 
 # app = Flask(__name__) 
-app.secret_key = 'secretkeyhardcoded'
-login_manager = LoginManager()
-login_manager.init_app(app)
+# app.secret_key = 'secretkeyhardcoded'
+# login_manager = LoginManager()
+# login_manager.init_app(app)
 # db = SQLAlchemy(app)
 
 #User auth
-@login_manager.user_loader
-def load_user(id):
-    return Users.query.get(int(id))
+# @login_manager.user_loader
+# def load_user(id):
+#     return Users.query.get(int(id))
+
+# @login_manager.unauthorized_handler
+# def unauthorized():
+#   return "Sorry you must be logged in to view this page"
 
 #Create an index page
 @app.route('/')
@@ -76,6 +80,8 @@ def loginSucess():
         
         for row in result:
             # login_user(name=row.name,password=row.password)
+            # user = Users(name=row.name,password=row.password)
+            # login_user(user)
             if (len(row.name)!=0):
                 print("Welcome ",row.id)
                 books = db.session.query(Books).all()
@@ -100,7 +106,6 @@ def logout():
     return render_template('index.html')
 
 @app.route('/admin_dashboard')
-@login_required
 def admin_dashboard():
     return render_template('admin_dashboard.html')
 
@@ -139,6 +144,7 @@ def daily_post(book_id,user_id,numberofbooks):
                 Books.query.filter_by(id=book_id).update(dict(numberofbooks=str(int(numberofbooks)-1)))
                 db.session.commit()
             user_book_update = ' '.join(ids)
+            print(user_book_update)
             Users.query.filter_by(id=user_id).update(dict(book_ids=user_book_update))
             db.session.commit()
             print('hereeeeeee',user_book_update,book_id,user_id,numberofbooks)
@@ -168,6 +174,19 @@ def issued(user_id):
 @app.errorhandler(404)
 def error(e):
     return render_template('404.html')
+
+@app.route('/viewbooks')
+def viewbooks():
+    books = db.session.query(Books).all()
+    return render_template('viewbooks.html',books=books)
+
+@app.route('/remove-book/<book_id>')
+def remove_book(book_id):
+    db.session.query(Books).filter(Books.id==book_id).delete()
+    db.session.commit()
+    books = db.session.query(Books).all()
+    return render_template('viewbooks.html',books=books)
+
 
 # @app.route('/issued-books')
 # def issuedBooks():
