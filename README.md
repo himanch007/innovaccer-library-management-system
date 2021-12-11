@@ -58,5 +58,11 @@ User can borrow a specific book by using book id
 /issued-books
 When Book Issued process is complete
 
+/viewbooks
+Admin can view the existing books
+
+/remove-book/<book_id>
+Admin can remove an existing book
+
 ```
 
