@@ -10,7 +10,7 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 app.secret_key = 'secretkeyhardcoded'
 login_manager = LoginManager()
 login_manager.init_app(app)
-db = SQLAlchemy(app)
+# db = SQLAlchemy(app)
 
 #User auth
 @login_manager.user_loader
@@ -75,7 +75,7 @@ def loginSucess():
         result = db.session.query(Users).filter(Users.name==name, Users.password==hashedPassword)
         
         for row in result:
-            login_user(name=row.name,password=row.password)
+            # login_user(name=row.name,password=row.password)
             if (len(row.name)!=0):
                 print("Welcome ",row.id)
                 books = db.session.query(Books).all()
@@ -141,7 +141,8 @@ def daily_post(book_id,user_id,numberofbooks):
             user_book_update = ' '.join(ids)
             Users.query.filter_by(id=user_id).update(dict(book_ids=user_book_update))
             db.session.commit()
-            # print('hereeeeeee',user_book_update)
+            print('hereeeeeee',user_book_update,book_id,user_id,numberofbooks)
+            print(ids)
     missing = Users.query.filter_by(id=user_id).first()
     user_books = list(missing.book_ids.split(" "))
     books = db.session.query(Books).all()
@@ -151,11 +152,18 @@ def daily_post(book_id,user_id,numberofbooks):
     # User.query.filter(User.email.endswith('@example.com')).all()
     return render_template('issued.html',user_books=user_books,books=books,user_id=user_id)
 
-@app.route('/issued-books')
-def issued():
-    
+@app.route('/issued-books/<user_id>')
+def issued(user_id):
+    missing = Users.query.filter_by(id=user_id).first()
+    user_books = list(missing.book_ids.split(" "))
+    for i in range(1,len(user_books)):
+        user_books[i] = int(user_books[i])
+    books = db.session.query(Books).all()
     # User.query.filter(User.email.endswith('@example.com')).all()
-    return render_template('issued.html')
+    print(user_books)
+    print(user_id)
+    print(books[0].id)
+    return render_template('issued.html',user_books=user_books,books=books,user_id=user_id)
 
 @app.errorhandler(404)
 def error(e):
