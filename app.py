@@ -109,6 +109,10 @@ def logout():
 def admin_dashboard():
     return render_template('admin_dashboard.html')
 
+@app.route('/user_dashboard/<user_id>')
+def user_dashboard(user_id):
+    books = db.session.query(Books).all()
+    return render_template('dashboard.html',books=books,user_id=user_id)
 
 @app.route('/dashboard/<book_id>/<user_id>')
 def dashboard(book_id,user_id):
