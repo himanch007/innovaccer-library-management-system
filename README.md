@@ -12,8 +12,11 @@ python app.py
 ![Screenshot from 2021-12-12 19-24-10](https://user-images.githubusercontent.com/92020620/145715419-9a0080fe-9ac9-472a-a5c9-6c9b86e59452.png)
 ![Screenshot from 2021-12-12 19-24-22](https://user-images.githubusercontent.com/92020620/145715417-664ba21c-c4be-452c-abc6-916412c7cf9d.png)
 ![Screenshot from 2021-12-12 19-26-59](https://user-images.githubusercontent.com/92020620/145715413-88f2c813-ad55-4da6-a754-0ee1d99482e8.png)
-![Screenshot from 2021-12-12 19-24-39](https://user-images.githubusercontent.com/92020620/145715416-ed1d6e3b-fd6e-46fd-b013-79ba12e88e19.png)
+![Admin_dashboard](https://user-images.githubusercontent.com/92020620/145753940-7cd45c4e-6510-4aa3-a299-cfa19db62476.png)
+![Remove books](https://user-images.githubusercontent.com/92020620/145753943-a06f75dc-3bc1-4161-9ea9-858296862049.png)
 ![Screenshot from 2021-12-12 19-27-15](https://user-images.githubusercontent.com/92020620/145715410-699255ab-65ab-41da-b752-5c74cb85c39a.png)
+![Screenshot from 2021-12-13 10-16-24](https://user-images.githubusercontent.com/92020620/145753956-a00810fd-4097-4721-b48d-31867d0fd561.png)
+
 
 
 ## Tech stack:
