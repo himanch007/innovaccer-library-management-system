@@ -37,44 +37,57 @@ python app.py
 
 ## Routes 
 ```
+API 1
 /register
 User can register here by using his credentials
 
 /about
 User can read about Contributors
 
+API 2
 /admin-login
 Admin can login using his credentials
 
 /user-login
 User can login using his credentials
 
+API 3
 /success-login
 After login User redirected to his dashboard
 
+API 4
 /success-register
 User will be successfully registered and redirected to his dashboard
 
+API 5
 /adminLoginSuccess
 After Admin login It will redirected to the page where he/she will add book details
 
 /logout
 When User/Admin wants to exit from his profile
 
+API 6
 /admin_dashboard
 Admin will see his dashboard
 
+API 7
 /book-form-id/<book_id>/<user_id>/<numberofbooks>
 User can borrow a specific book by using book id
 
 /issued-books
 When Book Issued process is complete
 
+API 8
 /viewbooks
 Admin can view the existing books
 
+API 9
 /remove-book/<book_id>
 Admin can remove an existing book
+
+API 10
+/issued-books/<user_id>
+Can view all the books requested by the user
 
 ```
 
