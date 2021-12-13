@@ -1,6 +1,7 @@
 ## Library Management system.
+- Deployed using AWS EC2 instance [link](http://18.118.163.188/).
 
-## To run the application:
+## To run the application locally:
 
 ```
 git clone https://github.com/himanch007/innovaccer-library-management-system.git
